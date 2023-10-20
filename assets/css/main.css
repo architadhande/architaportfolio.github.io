@@ -31,6 +31,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
 	line-height: 1;
+	
 }
 
 ol, ul {
@@ -100,7 +101,23 @@ input, select, textarea {
 
 	body {
 		background: #ffffff;
+		/*background-color: #ecdfc8; /* Set your desired background color */
+   		background-image: url('images/b.jpg'); /* Set your background image URL */
+    	background-repeat: repeat; /* Adjust as needed (repeat, no-repeat, etc.) */
 	}
+	body::before {
+		content: '';
+		background-image: url('images/b.jpg'); /* Set your pattern image URL */
+		opacity: 0.1; /* Adjust the opacity as needed */
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		position: absolute;
+		z-index: -1;
+		pointer-events: none;
+	}
+	
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
 			-moz-animation: none !important;
@@ -151,10 +168,26 @@ input, select, textarea {
 
 		}
 
-	body {
-		background-color: #ffffff;
-		color: #000000;
-	}
+		body {
+			background-color: #ffffff; /* Set your desired background color */
+			color: #000000;
+			background-image: url('images/b.jpg'); /* Set your background image URL */
+			background-repeat: repeat; /* Adjust as needed (repeat, no-repeat, etc.) */
+			position: relative;
+		}
+		body::before {
+			content: '';
+			background-image: url('images/b.jpg'); /* Set your pattern image URL */
+			opacity: 0.1; /* Adjust the opacity as needed */
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			position: absolute;
+			z-index: -1;
+			pointer-events: none;
+		}
+		
 
 	body, input, select, textarea {
 		font-family: "Source Sans Pro", Helvetica, sans-serif;
