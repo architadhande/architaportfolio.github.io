@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Archita Dhande - Data Scientist & Analyst</title>
+    <title>Archita Dhande - Data Science & Analytics Engineer</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -88,12 +88,66 @@
             justify-content: center;
             background: linear-gradient(135deg, var(--earth-cream) 0%, var(--earth-light) 50%, var(--earth-beige) 100%);
             position: relative;
+            overflow: hidden;
+        }
+
+        /* Option 1: Floating circular photo on the right */
+        .home::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -10%;
+            transform: translateY(-50%);
+            width: 600px;
+            height: 600px;
+            background-image: url('images/50403225_90001_0300_Large.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 1;
+            border-radius: 50%;
+            filter: grayscale(100%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Option 2: Full background with overlay - Uncomment to use this instead
+        .home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('images/me.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0.08;
+            z-index: 1;
+            filter: grayscale(100%);
+        }
+        */
+
+        @keyframes float {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-20px); }
+        }
+
+        @media (min-width: 1200px) {
+            .home::before {
+                right: 5%;
+                width: 500px;
+                height: 500px;
+                opacity: 0.2;
+            }
         }
 
         .home-content {
             text-align: center;
             max-width: 800px;
             padding: 0 2rem;
+            position: relative;
+            z-index: 2;
         }
 
         .home-emoji {
@@ -415,6 +469,10 @@
             transition: var(--transition);
         }
 
+        .timeline-content .project-link {
+            margin-top: 1rem;
+        }
+
         .project-link:hover {
             background: var(--earth-brown);
             color: white;
@@ -537,6 +595,13 @@
         }
 
         @media (max-width: 768px) {
+            .home::before {
+                width: 400px;
+                height: 400px;
+                right: -50%;
+                opacity: 0.1;
+            }
+
             .education-grid {
                 grid-template-columns: 1fr;
             }
@@ -612,7 +677,7 @@
     <section id="home" class="home">
         <div class="home-content">
             <div class="home-emoji">👋</div>
-            <p class="home-subtitle">Data Scientist & Analyst</p>
+            <p class="home-subtitle">Data Science & Analytics Engineer</p>
             <h1 class="home-title">Archita Dhande</h1>
             <p class="home-description">Transforming complex data into actionable insights through advanced analytics, machine learning, and strategic research. Passionate about solving real-world problems with data-driven solutions.</p>
             <div class="home-buttons">
@@ -673,8 +738,8 @@
             <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-date">July 2025 - Present</div>
-                    <h3 class="timeline-title">Data Science and Analytics Engineer</h3>
-                    <p class="timeline-company">Easley-Dunn Productions, Inc.</p>
+                    <h3 class="timeline-title">Research Assistant</h3>
+                    <p class="timeline-company">USC Viterbi School of Engineering</p>
                     <div class="timeline-skills">
                         <span class="skill-tag">Simulation Modeling</span>
                         <span class="skill-tag">A/B Testing</span>
@@ -721,6 +786,9 @@
                     <p class="timeline-description">
                         Explored over 1 million records of drug overdose deaths in the USA (2015–2024) using CDC data. Created 10+ reports with ArcGIS StoryMap, Dashboard, and Hub, delivering actionable insights to public health stakeholders.
                     </p>
+                    <a href="https://storymaps.arcgis.com/stories/3c5a34a229024c19acebea26e0f26ad3" class="project-link" target="_blank">
+                        <i class="fas fa-map"></i> View ArcGIS StoryMap
+                    </a>
                 </div>
                 <div class="timeline-dot"></div>
             </div>
@@ -896,7 +964,26 @@
                     </div>
                 </div>
 
-                
+                <!-- Project 7 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Training CNN Model with ImageNet on PARAM Siddhi-AI Supercomputer</h3>
+                        <div class="timeline-skills">
+                            <span class="skill-tag">CNN</span>
+                            <span class="skill-tag">High-Performance Computing</span>
+                            <span class="skill-tag">CUDA</span>
+                        </div>
+                        <p class="project-description">
+                            High-performance computing implementation for large-scale image classification using supercomputing resources.
+                        </p>
+                        <a href="https://github.com/users/architadhande/projects/4/views/1" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
 
                 <!-- Project 8 -->
                 <div class="project-card">
@@ -940,7 +1027,26 @@
                     </div>
                 </div>
 
-                
+                <!-- Project 10 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Sustainable Development for Solid Wet Waste Management</h3>
+                        <div class="timeline-skills">
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">NodeJS</span>
+                        </div>
+                        <p class="project-description">
+                            Comprehensive database management system for sustainable waste management with environmental impact tracking.
+                        </p>
+                        <a href="https://github.com/users/architadhande/projects/7/views/1" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
 
                 <!-- Project 11 -->
                 <div class="project-card">
@@ -984,9 +1090,46 @@
                     </div>
                 </div>
 
-                
+                <!-- Project 13 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-hand-paper"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Comparative Analysis of Human Hand Gesture Recognition in Healthcare</h3>
+                        <div class="timeline-skills">
+                            <span class="skill-tag">Gesture Recognition</span>
+                            <span class="skill-tag">CNN</span>
+                            <span class="skill-tag">Healthcare</span>
+                        </div>
+                        <p class="project-description">
+                            Advanced hand gesture recognition system for healthcare applications achieving 99.97% accuracy using computer vision.
+                        </p>
+                        <a href="https://github.com/users/architadhande/projects/10/views/1" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
 
-                
+                <!-- Project 14 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Pipe Inspection Robot using Arduino UNO</h3>
+                        <div class="timeline-skills">
+                            <span class="skill-tag">Arduino</span>
+                            <span class="skill-tag">Robotics</span>
+                            <span class="skill-tag">Sensors</span>
+                        </div>
+                        <p class="project-description">
+                            Automated pipe inspection robot using Arduino with multiple sensors for infrastructure monitoring and analysis.
+                        </p>
+                        <a href="https://github.com/users/architadhande/projects/11/views/1" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1178,7 +1321,7 @@
             <div class="about-item">
                 <div class="about-header">
                     <div class="about-icon"><i class="fas fa-music"></i></div>
-                    <h3 class="about-title">Team Jashn - USC Bollywood Dance Group</h3>
+                    <h3 class="about-title">USC Dancer - Team Jashn</h3>
                 </div>
                 <p class="about-description">
                     <strong>Jan 2024 - May 2025</strong><br>
@@ -1190,7 +1333,7 @@
             <div class="about-item">
                 <div class="about-header">
                     <div class="about-icon"><i class="fas fa-medal"></i></div>
-                    <h3 class="about-title">Team MIT Cultural Dance</h3>
+                    <h3 class="about-title">Dance Competition Achievements</h3>
                 </div>
                 <p class="about-description">
                     1st Runner Up at Indigo Saga, Mood Indigo Fest (IIT Bombay) and 1st Runner Up at Thematic Dance, Aarohan Fest (MIT-WPU). Passionate about cultural expression through dance.
