@@ -92,6 +92,7 @@
         }
 
         /* Option 1: Floating circular photo on the right */
+        /* Photo on the right */
         .home::before {
             content: '';
             position: absolute;
@@ -100,16 +101,39 @@
             transform: translateY(-50%);
             width: 600px;
             height: 600px;
-            background-image: url('images/50403225_90001_0300_Large.jpg');
+            background-image: url('images/me.jpg');
             background-size: cover;
             background-position: center;
-            opacity: 0.15;
+            opacity: 0.3;
             z-index: 1;
             border-radius: 50%;
-            filter: grayscale(100%);
             animation: float 6s ease-in-out infinite;
         }
-
+        
+        /* Photo on the left */
+        .home::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -10%;
+            transform: translateY(-50%);
+            width: 600px;
+            height: 600px;
+            background-image: url('images/me2.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 1;
+            border-radius: 50%;
+            animation: float-reverse 6s ease-in-out infinite;
+        }
+        
+        /* Animation for left photo (opposite direction) */
+        @keyframes float-reverse {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(20px); }
+        }
+        
         /* Option 2: Full background with overlay - Uncomment to use this instead
         .home::before {
             content: '';
