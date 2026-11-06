@@ -1,1553 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Archita Dhande - Data Science & Analytics Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --earth-brown: #CB997E;
-            --earth-beige: #EDDCD2;
-            --earth-cream: #FFF1E6;
-            --earth-light: #F0EFEB;
-            --earth-tan: #DDBEA9;
-            --earth-sage: #A5A58D;
-            --earth-green: #B7B7A4;
-            --text-primary: #3a3a3a;
-            --text-secondary: #6b6b6b;
-            --text-light: #8a8a8a;
-            --shadow: 0 8px 32px rgba(203, 153, 126, 0.15);
-            --shadow-hover: 0 16px 48px rgba(203, 153, 126, 0.25);
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--earth-cream);
-            color: var(--text-primary);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        /* Navigation - Narrower and more compact */
-        nav {
-            position: fixed;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            background: rgba(255, 241, 230, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 50px;
-            padding: 0.5rem 1rem;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--earth-beige);
-            max-width: 90%;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 0.4rem;
-            list-style: none;
-            align-items: center;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.25rem 0.5rem;
-            border-radius: 25px;
-            font-size: 0.75rem;
-            transition: var(--transition);
-            position: relative;
-            white-space: nowrap;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--earth-brown);
-            background: var(--earth-light);
-        }
-
-        /* Home Section */
-        .home {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--earth-cream) 0%, var(--earth-light) 50%, var(--earth-beige) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Option 1: Floating circular photo on the right */
-        /* Photo on the right */
-        .home::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: -10%;
-            transform: translateY(-50%);
-            width: 600px;
-            height: 600px;
-            background-image: url('images/me.jpg');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.7;
-            z-index: 1;
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        /* Photo on the left */
-        .home::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 5%;
-            transform: translateY(-50%);
-            width: 500px;
-            height: 500px;
-            background-image: url('images/me2.jpg');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.4;
-            z-index: 1;
-            border-radius: 50%;
-            animation: float-reverse 6s ease-in-out infinite;
-        }
-        
-        /* Animation for left photo (opposite direction) */
-        @keyframes float-reverse {
-            0%, 100% { transform: translateY(-50%) translateX(0); }
-            50% { transform: translateY(-50%) translateX(20px); }
-        }
-        
-        /* Option 2: Full background with overlay - Uncomment to use this instead
-        .home::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('images/me.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            opacity: 0.08;
-            z-index: 1;
-            filter: grayscale(100%);
-        }
-        */
-
-        @keyframes float {
-            0%, 100% { transform: translateY(-50%) translateX(0); }
-            50% { transform: translateY(-50%) translateX(-20px); }
-        }
-
-        @media (min-width: 1200px) {
-            .home::before {
-                right: 5%;
-                width: 500px;
-                height: 500px;
-                opacity: 0.2;
-            }
-        }
-
-        .home-content {
-            text-align: center;
-            max-width: 800px;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .home-emoji {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-
-        .home-subtitle {
-            color: var(--earth-brown);
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-
-        .home-title {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, var(--earth-brown), var(--earth-sage));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .home-description {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.5;
-        }
-
-        .home-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: var(--transition);
-            border: 3px solid transparent;
-        }
-
-        .btn-primary {
-            background: var(--earth-brown);
-            color: white;
-            border-color: var(--earth-brown);
-        }
-
-        .btn-primary:hover {
-            background: var(--earth-sage);
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--earth-brown);
-            border-color: var(--earth-brown);
-        }
-
-        .btn-secondary:hover {
-            background: var(--earth-brown);
-            color: white;
-            transform: translateY(-5px);
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-alt {
-            background: var(--earth-light);
-            padding-left: 0;
-            padding-right: 0;
-            max-width: 100%;
-        }
-
-        .section-alt .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 4rem;
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-primary);
-        }
-
-        /* Education Grid - Side by Side */
-        .education-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-
-        .education-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            border: 2px solid var(--earth-beige);
-            transition: var(--transition);
-        }
-
-        .education-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--earth-brown);
-        }
-
-        /* Timeline Styles for Experience */
-        .timeline {
-            position: relative;
-            padding: 2rem 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(to bottom, var(--earth-brown), var(--earth-sage));
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
-
-        .timeline-item {
-            display: flex;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .timeline-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            width: 45%;
-            border: 2px solid var(--earth-beige);
-            transition: var(--transition);
-        }
-
-        .timeline-content:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--earth-brown);
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            top: 30px;
-            width: 20px;
-            height: 20px;
-            background: var(--earth-brown);
-            border-radius: 50%;
-            transform: translateX(-50%);
-            border: 4px solid white;
-            z-index: 10;
-        }
-
-        .timeline-date {
-            color: var(--earth-brown);
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            background: var(--earth-beige);
-            padding: 0.25rem 1rem;
-            border-radius: 20px;
-            display: inline-block;
-        }
-
-        .timeline-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .timeline-company {
-            font-size: 1.1rem;
-            color: var(--earth-brown);
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-
-        .timeline-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .skill-tag {
-            background: var(--earth-tan);
-            color: var(--text-primary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .skill-tag:hover {
-            background: var(--earth-brown);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .timeline-description {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            border: 2px solid var(--earth-beige);
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .project-card:hover {
-            transform: translateY(-15px) rotate(2deg);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--earth-brown);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, var(--earth-beige), var(--earth-tan));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--earth-brown);
-            font-size: 3rem;
-            overflow: hidden;
-        }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .project-content {
-            padding: 2rem;
-        }
-
-        .project-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .project-description {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--earth-brown);
-            text-decoration: none;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            background: var(--earth-beige);
-            transition: var(--transition);
-        }
-
-        .timeline-content .project-link {
-            margin-top: 1rem;
-        }
-
-        .project-link:hover {
-            background: var(--earth-brown);
-            color: white;
-        }
-
-        /* Research Grid */
-        .research-grid {
-            display: grid;
-            gap: 4rem;
-            margin-top: 4rem;
-        }
-
-        .research-item {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-            padding: 2rem 0;
-        }
-
-        .research-item:nth-child(even) .research-content {
-            order: 2;
-        }
-
-        .research-item:nth-child(even) .research-image {
-            order: 1;
-        }
-
-        .research-image img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-        }
-
-        .research-title {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .research-org {
-            font-size: 1.2rem;
-            color: var(--earth-brown);
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-
-        .research-description {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* More About Me Compact Style */
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .about-item {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            border: 2px solid var(--earth-beige);
-            transition: var(--transition);
-        }
-
-        .about-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--earth-brown);
-        }
-
-        .about-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .about-icon {
-            font-size: 2rem;
-            color: var(--earth-brown);
-        }
-
-        .about-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .about-description {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            font-size: 0.9rem;
-        }
-
-        /* Contact Card */
-        .contact-card {
-            background: white;
-            padding: 3rem;
-            border-radius: 30px;
-            box-shadow: var(--shadow);
-            max-width: 600px;
-            margin: 0 auto;
-            border: 2px solid var(--earth-tan);
-            text-align: center;
-        }
-
-        .contact-emoji {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        @media (max-width: 768px) {
-            .home::before {
-                width: 400px;
-                height: 400px;
-                right: -50%;
-                opacity: 0.1;
-            }
-
-            .education-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-            
-            .timeline-item {
-                flex-direction: column !important;
-                margin-left: 40px;
-            }
-            
-            .timeline-content {
-                width: 100%;
-            }
-            
-            .timeline-dot {
-                left: 20px;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .research-item {
-                grid-template-columns: 1fr;
-            }
-
-            .research-item:nth-child(even) .research-content,
-            .research-item:nth-child(even) .research-image {
-                order: initial;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Scroll Progress */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 4px;
-            background: linear-gradient(to right, var(--earth-brown), var(--earth-sage));
-            z-index: 9999;
-            transition: width 0.3s ease;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archita Dhande · Data analyst</title>
+<meta name="description" content="Archita Dhande builds the revenue and go-to-market data that AI companies plan around. GTM Data Analyst at Tavily, a Nebius company.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Hero */
+  .hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 2rem; align-items: center; padding: 2.5rem 0 3rem; }
+  .hi { margin: 0 0 0.75rem; }
+  .hero h1 { font-size: clamp(2.6rem, 6.4vw, 5.1rem); line-height: 0.98; letter-spacing: -0.04em; font-weight: 800; margin: 0 0 1.5rem; }
+  .hero h1 .mark { background: linear-gradient(transparent 62%, var(--marigold) 62%, var(--marigold) 92%, transparent 92%); }
+  .lede { font-size: 1.2rem; color: var(--soft); max-width: 33rem; margin: 0 0 2rem; }
+  .lede strong { color: var(--ink); font-weight: 600; }
+
+  .stage { position: relative; height: 580px; touch-action: pan-y; }
+  .polaroid { position: absolute; left: 50%; top: 46%; width: min(330px, 70%); transform: translate(-50%, -50%) rotate(3deg); background: var(--white); padding: 14px 14px 52px; border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+  .polaroid img { aspect-ratio: 4 / 4.4; object-fit: cover; object-position: 50% 30%; width: 100%; }
+  .polaroid figcaption { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-family: var(--hand); font-size: 1.5rem; color: var(--ink); }
+
+  .sticker { position: absolute; left: var(--x); top: var(--y); transform: translate(var(--dx, 0px), var(--dy, 0px)) rotate(var(--r)); padding: 0.45rem 0.9rem; border: 2px solid var(--ink); border-radius: 999px; font: 600 0.95rem/1.2 var(--display); color: var(--ink); background: var(--bg, var(--white)); box-shadow: 3px 3px 0 var(--ink); cursor: grab; user-select: none; touch-action: none; white-space: nowrap; z-index: 2; }
+  .sticker:active { cursor: grabbing; }
+  .sticker.dragging { box-shadow: 7px 7px 0 var(--ink); z-index: 5; }
+  .sticker.round { border-radius: 50%; width: 92px; height: 92px; display: grid; place-items: center; text-align: center; white-space: normal; padding: 0.5rem; font-size: 0.85rem; line-height: 1.1; }
+  .drag-hint { position: absolute; right: 2%; bottom: 0; transform: rotate(-4deg); text-align: right; }
+  .drag-hint svg { display: inline-block; vertical-align: middle; }
+  .shuffle { position: absolute; left: 2%; bottom: 6px; font: 600 0.9rem var(--display); background: none; border: 0; color: var(--soft); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 0.25rem; }
+  .shuffle:hover { color: var(--magenta); }
+
+  /* Current role */
+  .now { background: var(--white); border: 2px solid var(--ink); border-radius: 22px; box-shadow: 8px 8px 0 var(--indigo); padding: clamp(1.5rem, 4vw, 3rem); display: grid; grid-template-columns: 1fr 1.6fr; gap: 2rem 3rem; }
+  .now .tag { display: inline-block; background: var(--magenta); color: var(--white); font-weight: 600; font-size: 0.9rem; padding: 0.2rem 0.75rem; border-radius: 999px; margin-bottom: 1rem; }
+  .now h3 { font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 0.5rem; font-weight: 800; }
+  .now .meta { color: var(--soft); margin: 0; }
+  .now ul { margin: 0; padding: 0; list-style: none; }
+  .now li { position: relative; padding-left: 1.75rem; margin-bottom: 0.9rem; }
+  .now li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 0.8rem; height: 0.8rem; border-radius: 3px; background: var(--marigold); border: 2px solid var(--ink); transform: rotate(12deg); }
+  .metrics { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.25rem; padding: 0; list-style: none; }
+  .metrics li { padding: 0.15rem 0.6rem; border: 1.5px solid var(--ink); border-radius: 8px; font-size: 0.85rem; font-weight: 600; background: var(--paper); margin: 0; }
+  .metrics li::before { display: none; }
+  .wins { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.25rem 0 0; padding: 0; list-style: none; }
+  .wins li { margin: 0; padding: 0.8rem 0.9rem; border: 2px solid var(--ink); border-radius: 14px; background: var(--marigold); }
+  .wins li:nth-child(2) { background: #C9F2E3; }
+  .wins li::before { display: none; }
+  .wins b { display: block; font-size: clamp(1.4rem, 2.6vw, 1.9rem); line-height: 1.05; letter-spacing: -0.03em; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .wins span { display: block; font-size: 0.88rem; line-height: 1.3; margin-top: 0.3rem; }
+
+  /* Earlier roles: a timeline */
+  .path { margin: 3rem 0 0; padding: 0; list-style: none; position: relative; }
+  .path::before { content: ""; position: absolute; left: 7.4rem; top: 0.6rem; bottom: 0.6rem; border-left: 2px dashed var(--line); }
+  .path li { display: grid; grid-template-columns: 6.5rem 1fr; gap: 2rem; padding: 0 0 1.75rem; position: relative; }
+  .path li::after { content: ""; position: absolute; left: calc(7.4rem - 6px); top: 0.45rem; width: 10px; height: 10px; border-radius: 50%; background: var(--paper); border: 2px solid var(--indigo); }
+  .path .yr { color: var(--soft); font-weight: 600; font-size: 0.95rem; text-align: right; font-variant-numeric: tabular-nums; }
+  .path h4 { margin: 0; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em; }
+  .path p { margin: 0.2rem 0 0; color: var(--soft); max-width: 40rem; }
+
+  /* Projects */
+  .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .proj { position: relative; background: var(--white); border: 2px solid var(--ink); border-radius: 18px; padding: 1.5rem 1.5rem 1.35rem; transition: transform .15s, box-shadow .15s; box-shadow: 4px 4px 0 var(--ink); }
+  .proj:hover { transform: translate(-3px, -3px) rotate(-0.4deg); box-shadow: 7px 7px 0 var(--ink); }
+  .proj .chip { width: 42px; height: 42px; border-radius: 12px; border: 2px solid var(--ink); display: grid; place-items: center; margin-bottom: 1rem; }
+  .proj h3 { margin: 0 0 0.4rem; font-size: 1.35rem; letter-spacing: -0.02em; font-weight: 800; }
+  .proj h3 a { color: var(--ink); text-decoration: none; }
+  .proj h3 a::after { content: ""; position: absolute; inset: 0; border-radius: 18px; }
+  .proj p { margin: 0 0 0.9rem; color: var(--soft); }
+  .proj .stack { font-size: 0.9rem; font-weight: 600; color: var(--indigo); margin: 0; }
+  .proj .extra { position: relative; z-index: 1; }
+
+  /* Small facts */
+  .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .fact h3 { font-size: 1.05rem; margin: 0 0 0.6rem; font-weight: 800; }
+  .fact ul { margin: 0; padding: 0; list-style: none; }
+  .fact li { margin-bottom: 0.55rem; color: var(--soft); }
+  .fact li b { color: var(--ink); font-weight: 600; display: block; }
+
+  /* What I'm like to work with */
+  .traits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .trait { background: var(--bg); border: 2px solid var(--ink); border-radius: 18px; padding: 1.5rem; box-shadow: 4px 4px 0 var(--ink); }
+  .trait h3 { margin: 0 0 0.5rem; font-size: 1.35rem; letter-spacing: -0.02em; font-weight: 800; }
+  .trait p { margin: 0; color: var(--ink); }
+  .more { margin: 1.75rem 0 0; font-size: 1.1rem; color: var(--soft); }
+  .more a { font-weight: 600; }
+
+  @media (max-width: 880px) {
+    .hero { grid-template-columns: 1fr; padding-top: 1rem; }
+    .stage { height: 460px; }
+    .now { grid-template-columns: 1fr; }
+    .projects, .facts, .traits { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .path::before, .path li::after { display: none; }
+    .path li { grid-template-columns: 1fr; gap: 0.1rem; }
+    .path .yr { text-align: left; }
+    .sticker { font-size: 0.85rem; }
+    .sticker.round { width: 80px; height: 80px; font-size: 0.78rem; }
+  }
+</style>
 </head>
 <body>
-    <!-- Scroll Progress -->
-    <div class="scroll-progress" id="scrollProgress"></div>
+<div class="wrap">
+  <nav class="top" aria-label="Main">
+    <a class="logo" href="index.html">archita<span>.</span></a>
+    <div class="switch">
+      <a href="index.html" aria-current="page">Work</a>
+      <a href="me.html">Know me</a>
+    </div>
+  </nav>
 
-    <!-- Navigation -->
-    <nav>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#certifications">Awards & Certifications</a></li>
-            <li><a href="#about">More About Me</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#resume">Resume</a></li>
+  <header class="hero">
+    <div>
+      <p class="note hi">hi, I'm Archita!</p>
+      <h1>I turn messy revenue data into <span class="mark">decisions</span> AI companies run on.</h1>
+      <p class="lede"><strong>Founding GTM Data Analyst at Tavily</strong>, now part of Nebius, based in New York after two years in LA. I build the metrics, forecasts and alerts that Sales and leadership look at every morning. I believe every number has a story, and my job is to find the one that helps a team decide.</p>
+      <ul class="btns">
+        <li><a class="btn primary" href="mailto:architadhande2001@gmail.com">Say hi</a></li>
+        <li><a class="btn" href="https://drive.google.com/file/d/1Kec7xsb5wOqgE-a8z6tHhzagIyjdeYnM/view?usp=sharing">Résumé</a></li>
+        <li><a class="btn" href="https://www.linkedin.com/in/architadhande/">LinkedIn</a></li>
+        <li><a class="btn" href="https://github.com/architadhande">GitHub</a></li>
+      </ul>
+    </div>
+
+    <div class="stage" id="stage">
+      <figure class="polaroid">
+        <img src="images/heart.jpg" alt="Archita smiling and making a heart with her hands on a street in Los Angeles">
+        <figcaption>LA, mid-SQL-query</figcaption>
+      </figure>
+      <button class="sticker" style="--x:4%; --y:10%; --r:-8deg; --bg:var(--marigold)">founding data hire</button>
+      <button class="sticker round" style="--x:76%; --y:30%; --r:12deg; --bg:var(--magenta); color:#fff">1st Dan black belt</button>
+      <button class="sticker" style="--x:0%; --y:48%; --r:5deg; --bg:#C9F2E3">dbt + Snowflake</button>
+      <button class="sticker" style="--x:46%; --y:80%; --r:-6deg; --bg:var(--indigo); color:#fff">USC Trojan '25</button>
+      <button class="sticker" style="--x:70%; --y:64%; --r:3deg; --bg:#FFFFFF">ARR &gt; vibes</button>
+      <button class="sticker" style="--x:30%; --y:0%; --r:-3deg; --bg:#DCD6FF">LA → NYC</button>
+      <button class="shuffle" type="button" id="shuffle">Shuffle stickers</button>
+      <p class="note drag-hint" aria-hidden="true">
+        drag the stickers!
+        <svg width="34" height="28" viewBox="0 0 34 28" fill="none"><path d="M3 24c8-2 18-8 24-19m0 0-8 2m8-2 1 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </p>
+    </div>
+  </header>
+
+  <section class="sec" id="work" aria-labelledby="h-now">
+    <div class="sec-head">
+      <h2 id="h-now">What I do at work</h2>
+      <span class="note">the proof</span>
+    </div>
+    <article class="now">
+      <div>
+        <span class="tag">Dec 2025 to now</span>
+        <h3>GTM Data Analyst at Tavily</h3>
+        <p class="meta">Joined as the first data hire and stayed through the acquisition by Nebius in Feb 2026. New York.</p>
+        <ul class="wins" aria-label="Growth I've reported on">
+          <li><b>7x</b><span>ARR growth I tracked and reported on</span></li>
+          <li><b>~5x</b><span>Enterprise revenue growth in 2026, guided by my reporting</span></li>
         </ul>
-    </nav>
+        <ul class="metrics" aria-label="Metrics I own">
+          <li>ARR</li><li>MRR</li><li>NDR</li><li>GDR</li><li>Bookings</li><li>Pipeline</li><li>Quota</li>
+        </ul>
+      </div>
+      <ul>
+        <li>Own the go-to-market metrics layer in Snowflake and dbt, with documented definitions and validation checks, so Sales, CS and leadership all work from the same numbers while ARR grew 7x.</li>
+        <li>Built the reporting the Enterprise team used to decide which accounts and deals to focus on. Enterprise revenue grew about 5x in 2026.</li>
+        <li>Forecast quarter-end and year-end revenue, and model deal-close likelihood so reps with full pipelines know which deals to work first.</li>
+        <li>Built Airflow pipelines that alert Sales and SDR teams to key bookings and pipeline events in real time, using open-source LLMs served on Nebius Token Factory.</li>
+        <li>Rebuilt lead source attribution across Marketing, SDRs and AEs so reporting finally matches HubSpot.</li>
+      </ul>
+    </article>
 
-    <!-- 1. HOME SECTION -->
-    <section id="home" class="home">
-        <div class="home-content">
-            <div class="home-emoji">👋</div>
-            <p class="home-subtitle">Data Science & Analytics Engineer</p>
-            <h1 class="home-title">Archita Dhande</h1>
-            <p class="home-description">Transforming complex data into actionable insights through advanced analytics, machine learning, and strategic research. Passionate about solving real-world problems with data-driven solutions.</p>
-            <div class="home-buttons">
-                <a href="#education" class="btn btn-primary">
-                    <i class="fas fa-rocket"></i>
-                    Explore My Journey
-                </a>
-                <a href="#contact" class="btn btn-secondary">
-                    <i class="fas fa-coffee"></i>
-                    Let's Chat
-                </a>
-            </div>
-        </div>
-    </section>
+    <ol class="path" reversed aria-label="Earlier roles">
+      <li><span class="yr">2025</span><div><h4>Data Scientist, Easley-Dunn Productions</h4><p>Mentored four engineers building Python simulations for a mobile game's card system: drop rates, duplicates and XP. Tuned the game economy with persona simulations and A/B tests.</p></div></li>
+      <li><span class="yr">2024</span><div><h4>Data Analyst Intern, Esri Public Health</h4><p>Mapped over a million CDC overdose records to find where and who was hit hardest, and shared it in an <a href="https://storymaps.arcgis.com/stories/3c5a34a229024c19acebea26e0f26ad3">ArcGIS StoryMap</a>.</p></div></li>
+      <li><span class="yr">2024</span><div><h4>Business Analytics Extern, HP Ventures Group</h4><p>Wrote an investment memo and market analysis for an AI startup.</p></div></li>
+      <li><span class="yr">2022–23</span><div><h4>Data Scientist, C-DAC Pune</h4><p>Benchmarked ResNet training on ImageNet across a national supercomputer.</p></div></li>
+    </ol>
+  </section>
 
-    <!-- 2. EDUCATION SECTION -->
-    <section id="education" class="section section-alt">
-        <div class="container">
-            <h2 class="section-title">Educational Journey</h2>
-            <div class="education-grid">
-                <div class="education-card">
-                    <div class="timeline-date">Aug 2023 - May 2025</div>
-                    <h3 class="timeline-title">Master of Science in Analytics</h3>
-                    <p class="timeline-company">University of Southern California, Los Angeles</p>
-                    <div class="timeline-skills">
-                        <span class="skill-tag">Machine Learning</span>
-                        <span class="skill-tag">Statistical Modeling</span>
-                        <span class="skill-tag">Big Data Analytics</span>
-                        <span class="skill-tag">Data Science</span>
-                    </div>
-                    <p class="timeline-description">
-                        Advanced coursework in machine learning, statistical modeling, and big data analytics. Specialized in applying data science techniques to real-world problems through hands-on projects and research.
-                    </p>
-                </div>
+  <section class="sec" id="projects" aria-labelledby="h-proj">
+    <div class="sec-head">
+      <h2 id="h-proj">Things I've built</h2>
+      <span class="note">for fun, and for grades</span>
+    </div>
+    <div class="projects">
+      <article class="proj">
+        <div class="chip" style="background:var(--marigold)" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1C1440" stroke-width="2.2" stroke-linecap="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+        <h3><a href="https://github.com/architadhande/queryverse-data-platform">QueryVerse</a></h3>
+        <p>Upload a dataset of up to 1 GB, transform it with dbt-style models, query it in SQL with sub-100 ms responses, and chart the results, all in the browser.</p>
+        <p class="stack">FastAPI · DuckDB · pandas</p>
+      </article>
+      <article class="proj">
+        <div class="chip" style="background:var(--magenta)" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14l-1.5-6.5A2 2 0 0 0 15.6 9H8.4a2 2 0 0 0-1.9 1.5Z"/><circle cx="8" cy="18" r="2"/><circle cx="16" cy="18" r="2"/></svg></div>
+        <h3><a href="https://github.com/architadhande/UberLens">UberLens</a></h3>
+        <p>Ride-sharing analytics across 100K+ trips. The headline: 35% of revenue lands in two daily rush-hour windows.</p>
+        <p class="stack">Databricks SQL · Delta Lake · Spark</p>
+      </article>
+      <article class="proj">
+        <div class="chip" style="background:#C9F2E3" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1C1440" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg></div>
+        <h3><a href="https://github.com/architadhande/Health-Risk-Prediction-Pipeline">Health risk pipeline</a></h3>
+        <p>Predicts cardiovascular risk across ~200K patient records, from feature engineering to an ensemble model serving real-time predictions.</p>
+        <p class="stack">BigQuery · Kubeflow · Vertex AI</p>
+      </article>
+      <article class="proj">
+        <div class="chip" style="background:var(--indigo)" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9v6M18 9v6M3 10.5v3M21 10.5v3M6 12h12"/></svg></div>
+        <h3><a href="https://bodybae-ai.onrender.com/">BodyBae.ai</a></h3>
+        <p>A fitness and nutrition chatbot that grounds its answers with retrieval-augmented generation. Try the live demo.</p>
+        <p class="stack">Python · Flask · RAG · <a class="extra" href="https://github.com/architadhande/BodyBae.ai">source</a></p>
+      </article>
+    </div>
+  </section>
 
-                <div class="education-card">
-                    <div class="timeline-date">July 2019 - May 2023</div>
-                    <h3 class="timeline-title">Bachelor of Technology in Computer Science & Engineering</h3>
-                    <p class="timeline-company">MIT World Peace University, Pune</p>
-                    <div class="timeline-skills">
-                        <span class="skill-tag">Computer Science</span>
-                        <span class="skill-tag">Software Engineering</span>
-                        <span class="skill-tag">Data Science</span>
-                        <span class="skill-tag">Data Structures</span>
-                    </div>
-                    <p class="timeline-description">
-                        Comprehensive computer science education with focus on software development, algorithms, data science and data structures. Active participant in hackathons, technical competitions and clubs.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <section class="sec" aria-labelledby="h-more">
+    <div class="sec-head"><h2 id="h-more">Education and research</h2></div>
+    <div class="facts">
+      <div class="fact">
+        <h3>Education</h3>
+        <ul>
+          <li><b>M.S. in Analytics</b>University of Southern California, 2025</li>
+          <li><b>B.Tech in Computer Science</b>MIT World Peace University, 2023</li>
+        </ul>
+      </div>
+      <div class="fact">
+        <h3>Research</h3>
+        <ul>
+          <li><b>Patent: food additive smart scanner</b>Granted by CIPC, South Africa</li>
+          <li><b><a href="https://link.springer.com/chapter/10.1007/978-981-99-1745-7_33">Hand gesture recognition in healthcare</a></b>Springer, ICOECA 2023</li>
+          <li><b>AI/ML in global healthcare</b>Book chapter, Cambridge Scholars</li>
+        </ul>
+      </div>
+      <div class="fact">
+        <h3>Tools I reach for</h3>
+        <ul>
+          <li><b>Every day</b>SQL, Python, Snowflake, dbt, Airflow, Omni, HubSpot</li>
+          <li><b>When needed</b>BigQuery, Databricks, Spark, Tableau, Salesforce, AWS, GCP</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    <!-- 3. EXPERIENCE SECTION -->
-    <section id="experience" class="section">
-        <h2 class="section-title">Professional Experience</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">July 2025 - Present</div>
-                    <h3 class="timeline-title">Data Science and Analytics Engineer</h3>
-                    <p class="timeline-company">Easley-Dunn Productions, Inc.</p>
-                    <div class="timeline-skills">
-                        <span class="skill-tag">Simulation Modeling</span>
-                        <span class="skill-tag">A/B Testing</span>
-                        <span class="skill-tag">Game Economy Balancing</span>
-                        <span class="skill-tag">Retention Analytics</span>
-                        <span class="skill-tag">Economic Validation</span>
-                    </div>
-                    <p class="timeline-description">
-                        Leading a 4-person cross-functional team in the design, simulation, and implementation of the Card Character Acquisition System (CCAS) for Monster Gridiron, a mobile sports title. Designing and simulating data-driven acquisition systems for diverse player archetypes, optimizing drop rates, economy balance, and retention through statistical analysis and data pipeline integration.
-                    </p>
-                </div>
-                <div class="timeline-dot"></div>
-            </div>
+  <section class="sec" id="me" aria-labelledby="h-me">
+    <div class="sec-head">
+      <h2 id="h-me">What I'm like to work with</h2>
+    </div>
+    <div class="traits">
+      <article class="trait" style="--bg:#FFFFFF">
+        <h3>I build from zero.</h3>
+        <p>As Tavily's first data hire, I set up the metrics, forecasts and alerts the team now runs on, and kept them steady through 7x ARR growth and an acquisition.</p>
+      </article>
+      <article class="trait" style="--bg:#C9F2E3">
+        <h3>I bring people along.</h3>
+        <p>I mentored four engineers at Easley-Dunn, was a TA at USC, and have been part of the Society of Women Engineers since 2020.</p>
+      </article>
+      <article class="trait" style="--bg:#FFE7B0">
+        <h3>I stay calm when it's loud.</h3>
+        <p>I'm a 1st Dan black belt in Shotokan karate. Quarter-end feels easier after that.</p>
+      </article>
+    </div>
+    <p class="more">I'm also a story person and will try any adventure once. <a href="me.html">Get to know me →</a></p>
+  </section>
+</div>
 
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">Sept 2024 - Nov 2024</div>
-                    <h3 class="timeline-title">Business Analytics Extern</h3>
-                    <p class="timeline-company">HP Ventures Group LLC, Los Angeles</p>
-                    <div class="timeline-skills">
-                        <span class="skill-tag">Market Research</span>
-                        <span class="skill-tag">Financial Modeling</span>
-                        <span class="skill-tag">Competitive Analysis</span>
-                        <span class="skill-tag">Due Diligence</span>
-                    </div>
-                    <p class="timeline-description">
-                        Identified AI-driven growth opportunities for Sema4.ai. Prepared detailed investment memo incorporating competitive benchmarking, risk analysis, and multi-scenario financial econometric modeling, directly informing $5 million in strategic investment recommendations.
-                    </p>
-                </div>
-                <div class="timeline-dot"></div>
-            </div>
+<footer class="foot">
+  <div class="wrap">
+    <p class="note">psst, I reply fast</p>
+    <h2>Let's talk data and AI.</h2>
+    <p>Happy to chat about revenue analytics, data at AI companies, evaluating LLM systems, or mentoring women in engineering.</p>
+    <ul class="btns">
+      <li><a class="btn" href="mailto:architadhande2001@gmail.com">architadhande2001@gmail.com</a></li>
+      <li><a class="btn" href="https://www.linkedin.com/in/architadhande/">LinkedIn</a></li>
+      <li><a class="btn" href="https://drive.google.com/file/d/1Kec7xsb5wOqgE-a8z6tHhzagIyjdeYnM/view?usp=sharing">Résumé</a></li>
+    </ul>
+    <small>Made by Archita in New York, © 2026</small>
+  </div>
+</footer>
 
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">June 2024 - Aug 2024</div>
-                    <h3 class="timeline-title">Data Analyst Intern</h3>
-                    <p class="timeline-company">Esri - Public Health Department, Redlands</p>
-                    <div class="timeline-skills">
-                        <span class="skill-tag">GIS</span>
-                        <span class="skill-tag">Health Data Analysis</span>
-                        <span class="skill-tag">Data Visualization</span>
-                        <span class="skill-tag">Predictive Analytics</span>
-                    </div>
-                    <p class="timeline-description">
-                        Explored over 1 million records of drug overdose deaths in the USA (2015–2024) using CDC data. Created 10+ reports with ArcGIS StoryMap, Dashboard, and Hub, delivering actionable insights to public health stakeholders.
-                    </p>
-                    <a href="https://storymaps.arcgis.com/stories/3c5a34a229024c19acebea26e0f26ad3" class="project-link" target="_blank">
-                        <i class="fas fa-map"></i> View ArcGIS StoryMap
-                    </a>
-                </div>
-                <div class="timeline-dot"></div>
-            </div>
+<script>
+(() => {
+  const stage = document.getElementById('stage');
+  const stickers = [...stage.querySelectorAll('.sticker')];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">July 2024 - Aug 2024</div>
-                    <h3 class="timeline-title">Data Analyst</h3>
-                    <p class="timeline-company">Mobalytics, California</p>
-                    <div class="timeline-skills">
-                        <span class="skill-tag">Market Research</span>
-                        <span class="skill-tag">Game Analytics</span>
-                        <span class="skill-tag">Data Analysis</span>
-                        <span class="skill-tag">Strategic Planning</span>
-                    </div>
-                    <p class="timeline-description">
-                        Conducted thorough analyses of gaming genres to explore competitive landscape. Executed detailed game analytics on "Plants vs. Zombies" and "Business Game", focusing on KPIs like levels completed and revenue optimization.
-                    </p>
-                </div>
-                <div class="timeline-dot"></div>
-            </div>
+  stickers.forEach(s => {
+    let sx, sy, ox = 0, oy = 0;
+    s.addEventListener('pointerdown', e => {
+      s.setPointerCapture(e.pointerId);
+      sx = e.clientX; sy = e.clientY;
+      ox = parseFloat(s.style.getPropertyValue('--dx')) || 0;
+      oy = parseFloat(s.style.getPropertyValue('--dy')) || 0;
+      s.classList.add('dragging');
+    });
+    s.addEventListener('pointermove', e => {
+      if (!s.classList.contains('dragging')) return;
+      s.style.setProperty('--dx', (ox + e.clientX - sx) + 'px');
+      s.style.setProperty('--dy', (oy + e.clientY - sy) + 'px');
+    });
+    const end = () => s.classList.remove('dragging');
+    s.addEventListener('pointerup', end);
+    s.addEventListener('pointercancel', end);
+    // Keyboard: arrow keys nudge the focused sticker
+    s.addEventListener('keydown', e => {
+      const step = e.shiftKey ? 40 : 12;
+      const map = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] };
+      if (!map[e.key]) return;
+      e.preventDefault();
+      const dx = (parseFloat(s.style.getPropertyValue('--dx')) || 0) + map[e.key][0];
+      const dy = (parseFloat(s.style.getPropertyValue('--dy')) || 0) + map[e.key][1];
+      s.style.setProperty('--dx', dx + 'px');
+      s.style.setProperty('--dy', dy + 'px');
+    });
+  });
 
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">Mar 2022 - Mar 2023</div>
-                    <h3 class="timeline-title">Data Scientist</h3>
-                    <p class="timeline-company">Centre for Development of Advanced Computing (C-DAC), Pune</p>
-                    <div class="timeline-skills">
-                        <span class="skill-tag">High-Performance Computing</span>
-                        <span class="skill-tag">Computer Vision</span>
-                        <span class="skill-tag">PyTorch</span>
-                        <span class="skill-tag">CUDA</span>
-                    </div>
-                    <p class="timeline-description">
-                        Conducted large-scale benchmarking of ResNet-50/101 models on ImageNet dataset using 41,664 cores on PARAM Siddhi-AI supercomputer, achieving 89% validation accuracy. Developed RESTful APIs boosting throughput by 35%.
-                    </p>
-                </div>
-                <div class="timeline-dot"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. PROJECTS SECTION -->
-    <section id="projects" class="section section-alt">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <!-- Project 1 - UberLens -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-taxi"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">UberLens: NYC Taxi Trip Analytics</h3>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">Apache Spark</span>
-                            <span class="skill-tag">Databricks</span>
-                            <span class="skill-tag">Plotly</span>
-                            <span class="skill-tag">Machine Learning</span>
-                            <span class="skill-tag">Data Visualization</span>
-                        </div>
-                        <p class="project-description">
-                            Comprehensive analytics solution for NYC taxi data featuring advanced statistical analysis, predictive modeling, and interactive dashboards built in Databricks ecosystem.
-                        </p>
-                        <a href="https://github.com/architadhande/UberLens" class="project-link">
-                            View Project <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Project 2 - BodyBae AI -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-dumbbell"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">BodyBae.ai - AI-Powered Fitness Companion</h3>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">Python Flask</span>
-                            <span class="skill-tag">RAG Architecture</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">Health Analytics</span>
-                            <span class="skill-tag">Deployed on Render</span>
-                        </div>
-                        <p class="project-description">
-                            Lightweight AI fitness chatbot providing personalized health guidance with BMI/BMR calculations, goal-based nutrition planning, and intelligent RAG-based responses.
-                        </p>
-                        <a href="https://bodybae-ai.onrender.com/" class="project-link">
-                            Live Demo <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Project 3 - QueryVerse -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">QueryVerse - Complete Data Platform</h3>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">SQL Query Engine</span>
-                            <span class="skill-tag">DuckDB</span>
-                            <span class="skill-tag">DBT Integration</span>
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">Data Transformations</span>
-                        </div>
-                        <p class="project-description">
-                            Complete data platform with SQL query engine, DBT transformations, and interactive analytics dashboard. Upload files, transform data, execute queries, and visualize results.
-                        </p>
-                        <a href="https://github.com/architadhande/queryverse-data-platform" class="project-link">
-                            View Project <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Finsight-AI: Financial Sentiment Analysis</h3>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">DistilBERT</span>
-                            <span class="skill-tag">BeautifulSoup</span>
-                            <span class="skill-tag">GradScaler</span>
-                            <span class="skill-tag">Attention Masks</span>
-                        </div>
-                        <p class="project-description">
-                            Advanced financial sentiment analysis using transformer models and web scraping techniques to analyze market sentiment from news articles and social media.
-                        </p>
-                        <a href="https://github.com/architadhande/FinSight-AI-Financial-Sentiment-Analysis" class="project-link">
-                            View Project <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">YouTube Trending Metrics Analysis Using AWS Data Services</h3>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">AWS S3</span>
-                            <span class="skill-tag">Glue</span>
-                            <span class="skill-tag">Lambda</span>
-                            <span class="skill-tag">QuickSight</span>
-                        </div>
-                        <p class="project-description">
-                            End-to-end data pipeline using AWS services for analyzing YouTube trending metrics, including data ingestion, transformation, and visualization.
-                        </p>
-                        <a href="https://github.com/architadhande/YouTube-Trending-Metrics-Analysis-Using-AWS-Data-Services" class="project-link">
-                            View Project <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-credit-card"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Credit Card Default Payments Analysis using Tableau</h3>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">Tableau</span>
-                            <span class="skill-tag">Statistical Analysis</span>
-                            <span class="skill-tag">Risk Assessment</span>
-                        </div>
-                        <p class="project-description">
-                            Comprehensive analysis of credit card default patterns using advanced visualization techniques to identify risk factors and predict defaults.
-                        </p>
-                        <a href="https://github.com/architadhande/Credit-Card-Default-Payments-Analysis-using-Tableau" class="project-link">
-                            View Project <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fab fa-spotify"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Optimizing Spotify Song Investments Through Analytics</h3>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">Predictive Modeling</span>
-                            <span class="skill-tag">EDA</span>
-                            <span class="skill-tag">Feature Engineering</span>
-                        </div>
-                        <p class="project-description">
-                            Data-driven approach to optimize Spotify song investments through advanced analytics and machine learning models.
-                        </p>
-                        <a href="https://github.com/architadhande/Optimizing-Spotify-Song-Investments-Through-Analytics" class="project-link">
-                            View Project <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Health Risk Prediction Pipeline</h3>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">Google Cloud</span>
-                            <span class="skill-tag">Kubeflow Pipelines</span>
-                            <span class="skill-tag">TensorFlow</span>
-                        </div>
-                        <p class="project-description">
-                            Machine learning pipeline for predicting health risks using cloud infrastructure and advanced analytics techniques.
-                        </p>
-                        <a href="https://github.com/architadhande/Health-Risk-Prediction-Pipeline" class="project-link">
-                            View Project <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Automated Dataset Generation and Assessment for Education</h3>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">Machine Learning</span>
-                            <span class="skill-tag">ETL tools</span>
-                            <span class="skill-tag">Data Mining</span>
-                        </div>
-                        <p class="project-description">
-                            Automated system for generating educational datasets and assessments using machine learning and data mining techniques.
-                        </p>
-                        <a href="https://github.com/architadhande/Automated-Dataset-Generation-and-Assessment-for-Education" class="project-link">
-                            View Project <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 7 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Training CNN Model with ImageNet on PARAM Siddhi-AI Supercomputer</h3>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">CNN</span>
-                            <span class="skill-tag">High-Performance Computing</span>
-                            <span class="skill-tag">CUDA</span>
-                        </div>
-                        <p class="project-description">
-                            High-performance computing implementation for large-scale image classification using supercomputing resources.
-                        </p>
-                        <a href="https://github.com/users/architadhande/projects/4/views/1" class="project-link">
-                            View Project <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 8 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Address Parsing and Matching using NLP and Bi-LSTM</h3>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">NLP</span>
-                            <span class="skill-tag">Data Normalization</span>
-                            <span class="skill-tag">Bi-LSTM</span>
-                        </div>
-                        <p class="project-description">
-                            Advanced natural language processing system for parsing and matching Indian addresses using deep learning techniques.
-                        </p>
-                        <a href="https://github.com/architadhande/Indian-Address-Parser-and-Entity-Matching" class="project-link">
-                            View Project <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 9 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-car"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Text Mining and NLP for Brand Analysis in the Automobile Industry</h3>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">Web Scraping</span>
-                            <span class="skill-tag">NLP</span>
-                            <span class="skill-tag">Selenium</span>
-                        </div>
-                        <p class="project-description">
-                            Comprehensive text mining and sentiment analysis system for automobile brand analysis using advanced NLP techniques.
-                        </p>
-                        <a href="https://github.com/architadhande/Text-Mining-and-NLP-for-Brand-Analysis-in-the-Automobile-Industry" class="project-link">
-                            View Project <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 10 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-recycle"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Sustainable Development for Solid Wet Waste Management</h3>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">MySQL</span>
-                            <span class="skill-tag">Java</span>
-                            <span class="skill-tag">NodeJS</span>
-                        </div>
-                        <p class="project-description">
-                            Comprehensive database management system for sustainable waste management with environmental impact tracking.
-                        </p>
-                        <a href="https://github.com/users/architadhande/projects/7/views/1" class="project-link">
-                            View Project <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 11 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-road"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Behavioural Cloning in Autonomous Vehicle using CNN</h3>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">CNN</span>
-                            <span class="skill-tag">Image Processing</span>
-                            <span class="skill-tag">Neural Networks</span>
-                        </div>
-                        <p class="project-description">
-                            Deep learning system for autonomous vehicle behavior cloning using convolutional neural networks and computer vision.
-                        </p>
-                        <a href="https://github.com/architadhande/Behavioral-Cloning-in-Autonomous-Vehicles-using-CNN" class="project-link">
-                            View Project <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 12 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Analyzing greenhouse gas emissions in India and providing a solution</h3>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">Data Collection</span>
-                            <span class="skill-tag">Seaborn</span>
-                            <span class="skill-tag">PowerBI</span>
-                        </div>
-                        <p class="project-description">
-                            Comprehensive analysis of greenhouse gas emissions in India with data-driven solutions for environmental sustainability.
-                        </p>
-                        <a href="https://github.com/architadhande/Analyzing-greenhouse-gas-emissions-in-India-and-providing-a-solution" class="project-link">
-                            View Project <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                
-
-                
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. RESEARCH SECTION -->
-    <section id="research" class="section">
-        <h2 class="section-title">Empowering Innovation Through Research</h2>
-        <div class="research-grid">
-            <!-- Patent -->
-            <div class="research-item">
-                <div class="research-content">
-                    <h3 class="research-title">Patent: Smart Scanner for Food Additives</h3>
-                    <h4 class="research-org">Granted by Companies and Intellectual Property Commission (CIPC), South Africa</h4>
-                    <p class="research-description">
-                        An innovative scanner and app technology utilizing data mining and personalized allergy considerations, quantifying the health impact of food additives and providing a scale to measure the adverse effects on the user's well-being, thus enabling informed and health-conscious food choices.
-                    </p>
-                </div>
-                <div class="research-image">
-                    <img src="images/pb1.jpg" alt="Smart Scanner Patent" />
-                </div>
-            </div>
-
-            <!-- Research Paper -->
-            <div class="research-item">
-                <div class="research-content">
-                    <h3 class="research-title">Research Paper: Comparative Analysis of Human Hand Gesture Recognition in Healthcare Applications</h3>
-                    <h4 class="research-org">Springer: International Conference on Expert Clouds and Applications (ICOECA 2023)</h4>
-                    <p class="research-description">
-                        Achieved an exceptional 99.97% accuracy on the Leap Motion Controller dataset, highlighting the usages of hand gesture recognition in healthcare applications.
-                    </p>
-                    <a href="https://link.springer.com/chapter/10.1007/978-981-99-1745-7_33" class="btn btn-primary">
-                        View Publication <i class="fas fa-external-link-alt"></i>
-                    </a>
-                </div>
-                <div class="research-image">
-                    <img src="images/pb2.jpg" alt="Hand Gesture Recognition Research" />
-                </div>
-            </div>
-
-            <!-- Book Chapter -->
-            <div class="research-item">
-                <div class="research-content">
-                    <h3 class="research-title">Book Chapter: The Potential of AI/ML in Global Healthcare Sector</h3>
-                    <h4 class="research-org">Cambridge Scholars Publishing, Newcastle upon Tyne, England</h4>
-                    <p class="research-description">
-                        Conducted in-depth research on the pivotal role of artificial intelligence in healthcare, effectively communicated its potential to fuel advancements, and contributed to recent industry progress, demonstrating a keen grasp of current trends in the field.
-                    </p>
-                </div>
-                <div class="research-image">
-                    <img src="images/pb3.jpg" alt="AI Healthcare Book Chapter" />
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. AWARDS & CERTIFICATIONS SECTION -->
-    <section id="certifications" class="section section-alt">
-        <div class="container">
-            <h2 class="section-title">Awards & Certifications</h2>
-            <div class="projects-grid">
-                <!-- Award 1 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Winner - HACK-MIT Innovation Hackathon</h3>
-                        <p class="timeline-company">MIT-WPU</p>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">2022</span>
-                        </div>
-                        <p class="project-description">
-                            First place winner in the innovation hackathon at MIT World Peace University, demonstrating exceptional problem-solving and technical skills.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Certification 1 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fab fa-aws"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">AWS Data Engineer Associate</h3>
-                        <p class="timeline-company">Amazon Web Services</p>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">In Progress</span>
-                        </div>
-                        <p class="project-description">
-                            Currently pursuing AWS Data Engineer Associate certification to enhance cloud data engineering expertise.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Certification 2 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fab fa-google"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Google Data Analytics Professional Certificate (v2)</h3>
-                        <p class="timeline-company">Coursera</p>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">May 2025</span>
-                        </div>
-                        <p class="project-description">
-                            Comprehensive certification covering data analysis fundamentals, visualization, and statistical analysis using industry-standard tools.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Certification 3 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Academy Accreditation - Databricks Fundamentals</h3>
-                        <p class="timeline-company">Databricks</p>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">Mar 2025</span>
-                            <span class="skill-tag">Expires Mar 2026</span>
-                        </div>
-                        <p class="project-description">
-                            Credential ID: 136499450. Certified in Databricks fundamentals for big data processing and analytics.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Certification 4 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">BCG - GenAI Job Simulation</h3>
-                        <p class="timeline-company">Forage</p>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">Feb 2025</span>
-                            <span class="skill-tag">GenAI</span>
-                            <span class="skill-tag">Chatbot Development</span>
-                        </div>
-                        <p class="project-description">
-                            Credential ID: Xpbxw48KAXfLsWbtZ. Completed simulation covering GenAI, chatbot development, machine learning, and financial analysis.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Certification 5 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">McKinsey Forward Program</h3>
-                        <p class="timeline-company">McKinsey & Company</p>
-                        <div class="timeline-skills">
-                            <span class="skill-tag">May 2025 - Present</span>
-                            <span class="skill-tag">Business Strategy</span>
-                            <span class="skill-tag">Leadership</span>
-                        </div>
-                        <p class="project-description">
-                            Leadership and business strategy program focusing on problem-solving, digital transformation, and organizational effectiveness.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. MORE ABOUT ME SECTION -->
-    <section id="about" class="section">
-        <h2 class="section-title">More About Me</h2>
-        <div class="about-grid">
-            <!-- SWE -->
-            <div class="about-item">
-                <div class="about-header">
-                    <div class="about-icon"><i class="fas fa-users"></i></div>
-                    <h3 class="about-title">Society of Women Engineers</h3>
-                </div>
-                <p class="about-description">
-                    <strong>July 2020 - Present</strong><br>
-                    Affiliate Manager at MIT-WPU, Pune and Global Graduate Ambassador promoting diversity in engineering and supporting women in STEM fields.
-                </p>
-            </div>
-
-            <!-- USC Dance -->
-            <div class="about-item">
-                <div class="about-header">
-                    <div class="about-icon"><i class="fas fa-music"></i></div>
-                    <h3 class="about-title">USC Dancer - Team Jashn</h3>
-                </div>
-                <p class="about-description">
-                    <strong>Jan 2024 - May 2025</strong><br>
-                    Active member participating in cultural performances and representing USC in various dance competitions across Los Angeles.
-                </p>
-            </div>
-
-            <!-- Dance Achievements -->
-            <div class="about-item">
-                <div class="about-header">
-                    <div class="about-icon"><i class="fas fa-medal"></i></div>
-                    <h3 class="about-title">Dance Competition Achievements</h3>
-                </div>
-                <p class="about-description">
-                    1st Runner Up at Indigo Saga, Mood Indigo Fest (IIT Bombay) and 1st Runner Up at Thematic Dance, Aarohan Fest (MIT-WPU). Passionate about cultural expression through dance.
-                </p>
-            </div>
-
-            <!-- Karate -->
-            <div class="about-item">
-                <div class="about-header">
-                    <div class="about-icon"><i class="fas fa-fist-raised"></i></div>
-                    <h3 class="about-title">Karate - 1st Dan Black Belt</h3>
-                </div>
-                <p class="about-description">
-                    <strong>Shotokan Karate</strong><br>
-                    Achieved 1st Dan Black Belt with diploma degree certification, demonstrating discipline, dedication, and mastery in martial arts.
-                </p>
-            </div>
-
-            <!-- Adventures -->
-            <div class="about-item">
-                <div class="about-header">
-                    <div class="about-icon"><i class="fas fa-mountain"></i></div>
-                    <h3 class="about-title">Adventure Enthusiast</h3>
-                </div>
-                <p class="about-description">
-                    Passionate about outdoor adventures including scuba diving, surfing, sky diving, trekking, and camping. Always seeking new thrills and exploring the great outdoors.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 8. CONTACT SECTION -->
-    <section id="contact" class="section section-alt">
-        <div class="container">
-            <h2 class="section-title">Let's Create Something Amazing!</h2>
-            <div class="contact-card">
-                <div class="contact-emoji">👋</div>
-                <h3 style="font-size: 2rem; margin-bottom: 1rem; font-family: 'Poppins', sans-serif;">Ready to collaborate?</h3>
-                <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.8;">
-                    I'm always excited to work on new projects, solve interesting problems, or just chat about data science over coffee!
-                </p>
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
-                    <a href="mailto:architadhande2001@gmail.com" class="btn btn-primary">
-                        <i class="fas fa-envelope"></i> Email Me
-                    </a>
-                    <a href="https://www.linkedin.com/in/architadhande/" class="btn btn-secondary" target="_blank">
-                        <i class="fab fa-linkedin"></i> LinkedIn
-                    </a>
-                    <a href="https://github.com/architadhande" class="btn btn-secondary" target="_blank">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
-                </div>
-                <p style="color: var(--text-light); font-size: 0.9rem;">
-                    Currently in Los Angeles, California | Available for amazing opportunities
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 9. RESUME SECTION -->
-    <section id="resume" class="section">
-        <h2 class="section-title">Resume</h2>
-        <div class="contact-card">
-            <div class="contact-emoji">📄</div>
-            <h3 style="font-size: 2rem; margin-bottom: 1rem; font-family: 'Poppins', sans-serif;">Download My Resume</h3>
-            <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.8;">
-                Get a comprehensive overview of my experience, skills, and achievements in a traditional resume format.
-            </p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="https://drive.google.com/file/d/1Kec7xsb5wOqgE-a8z6tHhzagIyjdeYnM/view?usp=sharing" class="btn btn-primary" target="_blank">
-                    <i class="fas fa-download"></i> Download PDF
-                </a>
-                <a href="mailto:architadhande2001@gmail.com" class="btn btn-secondary">
-                    <i class="fas fa-envelope"></i> Contact Me
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer style="background: var(--text-primary); color: white; padding: 2rem 0; text-align: center;">
-        <p style="opacity: 0.8;">
-            Made with passion and lots of coffee by Archita Dhande | © 2024
-        </p>
-    </footer>
-
-    <script>
-        // Active navigation highlighting
-        function updateActiveNav() {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // Scroll progress
-        window.addEventListener('scroll', function() {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('scrollProgress').style.width = scrolled + '%';
-            
-            // Update active navigation
-            updateActiveNav();
-        });
-
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Project card interactions
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-15px) rotate(' + (Math.random() * 6 - 3) + 'deg)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) rotate(0deg)';
-            });
-        });
-
-        // Skill tag interactions
-        document.querySelectorAll('.skill-tag').forEach(tag => {
-            tag.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-3px) rotate(' + (Math.random() * 10 - 5) + 'deg)';
-            });
-            
-            tag.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) rotate(0deg)';
-            });
-        });
-
-        // Initialize active nav on page load
-        document.addEventListener('DOMContentLoaded', updateActiveNav);
-    </script>
+  document.getElementById('shuffle').addEventListener('click', () => {
+    const w = stage.clientWidth, h = stage.clientHeight;
+    stickers.forEach(s => {
+      if (!reduce) s.style.transition = 'transform .45s cubic-bezier(.3,1.4,.5,1)';
+      const left = s.offsetLeft, top = s.offsetTop;
+      const tx = Math.random() * (w - s.offsetWidth) - left;
+      const ty = Math.random() * (h - s.offsetHeight - 40) - top;
+      s.style.setProperty('--dx', tx + 'px');
+      s.style.setProperty('--dy', ty + 'px');
+      s.style.setProperty('--r', (Math.random() * 24 - 12).toFixed(1) + 'deg');
+      setTimeout(() => s.style.transition = '', 500);
+    });
+  });
+})();
+</script>
 </body>
 </html>
-

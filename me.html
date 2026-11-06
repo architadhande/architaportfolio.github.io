@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get to know Archita</title>
+<meta name="description" content="The off-the-clock side of Archita Dhande: Society of Women Engineers, a Shotokan black belt, adventures, and the occasional dance stage.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .intro { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; align-items: center; padding: 2.5rem 0 3.5rem; }
+  .intro h1 { font-size: clamp(2.6rem, 6.6vw, 5.4rem); line-height: 0.96; letter-spacing: -0.045em; font-weight: 800; margin: 0 0 1.5rem; }
+  .intro h1 s { text-decoration-color: var(--magenta); text-decoration-thickness: 0.09em; color: var(--soft); }
+  .intro p { font-size: 1.2rem; color: var(--soft); max-width: 32rem; margin: 0; }
+  .grad { position: relative; justify-self: center; width: min(320px, 80%); background: var(--white); padding: 12px 12px 50px; border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--magenta); transform: rotate(-3deg); }
+  .grad img { aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 20%; width: 100%; }
+  .grad figcaption { position: absolute; bottom: 9px; left: 0; right: 0; text-align: center; font-family: var(--hand); font-size: 1.45rem; }
+  .grad::before { content: ""; position: absolute; top: -14px; left: 50%; width: 110px; height: 28px; transform: translateX(-50%) rotate(4deg); background: rgba(255, 182, 39, .75); border: 1.5px solid rgba(28, 20, 64, .25); }
+
+  /* Scrapbook */
+  .book { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.75rem; }
+  .tile { position: relative; border: 2px solid var(--ink); border-radius: 20px; padding: clamp(1.4rem, 3vw, 2.25rem); box-shadow: 6px 6px 0 var(--ink); background: var(--white); overflow: hidden; }
+  .tile h2 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); line-height: 1; letter-spacing: -0.03em; margin: 0 0 0.9rem; font-weight: 800; }
+  .tile p { margin: 0 0 1rem; }
+  .tile .note { display: block; margin-bottom: 0.6rem; }
+
+  .dance { grid-column: span 3; background: var(--magenta); color: var(--white); transform: rotate(-0.6deg); }
+  .dance .note { color: var(--marigold); }
+  .dance p { max-width: 30rem; color: #FFE4EF; }
+  .medals { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0 0; padding: 0; list-style: none; position: relative; z-index: 1; }
+  .medals li { display: flex; gap: 0.8rem; align-items: center; background: var(--white); color: var(--ink); border: 2px solid var(--ink); border-radius: 14px; padding: 0.7rem 1rem 0.7rem 0.75rem; box-shadow: 3px 3px 0 var(--ink); max-width: 20rem; line-height: 1.3; }
+  .medals li b { display: block; font-weight: 800; }
+  .medals li span { font-size: 0.92rem; color: var(--soft); }
+  .mandala { position: absolute; right: -95px; top: -95px; width: 250px; opacity: .9; }
+  .dance h2, .dance p { position: relative; z-index: 1; max-width: 26rem; }
+
+  .karate { grid-column: span 2; background: var(--ink); color: var(--paper); transform: rotate(0.8deg); }
+  .karate .note { color: var(--marigold); }
+  .karate p { color: #C9C3EC; }
+  .belt { width: 100%; max-width: 240px; margin: 0.5rem 0 1rem; }
+
+  .swe { grid-column: span 4; background: var(--marigold); transform: rotate(0.5deg); }
+  .swe ul { margin: 0; padding: 0; list-style: none; }
+  .swe li { padding: 0.8rem 0; border-top: 2px dashed rgba(28,20,64,.35); }
+  .swe li b { display: block; font-weight: 800; }
+
+  .stories { grid-column: span 3; background: #DCD6FF; transform: rotate(-0.5deg); display: flex; flex-direction: column; }
+  .stories .shelf { margin-top: auto; padding-top: 1rem; width: 100%; height: auto; }
+  .journey { grid-column: span 3; transform: rotate(0.6deg); }
+  .stops { margin: 1.25rem 0 0; padding: 0; list-style: none; position: relative; }
+  .stops::before { content: ""; position: absolute; left: 13px; top: 14px; bottom: 14px; border-left: 3px dashed var(--magenta); }
+  .stops li { position: relative; padding: 0 0 1.4rem 2.75rem; }
+  .stops li:last-child { padding-bottom: 0; }
+  .stops li::before { content: ""; position: absolute; left: 2px; top: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--white); border: 3px solid var(--ink); }
+  .stops li.here::before { background: var(--marigold); box-shadow: 0 0 0 5px rgba(255,182,39,.35); }
+  .stops b { display: block; font-size: 1.15rem; font-weight: 800; line-height: 1.2; }
+  .stops span { color: var(--soft); }
+  .adventure { grid-column: span 3; transform: rotate(-0.7deg); display: flex; flex-direction: column; }
+  .scene { margin-top: auto; padding-top: 1rem; width: 100%; height: auto; }
+  .checks { margin: 0.25rem 0 0; padding: 0; list-style: none; columns: 2; column-gap: 1.5rem; }
+  .checks li { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.7rem; font-weight: 600; font-size: 1.1rem; break-inside: avoid; }
+  .checks svg { flex: none; }
+
+  .wins { grid-column: span 4; background: #C9F2E3; transform: rotate(0.4deg); }
+  .wins-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .wins-row div { border-left: 3px solid var(--ink); padding-left: 0.9rem; }
+  .wins-row b { display: block; font-size: 1.1rem; font-weight: 800; line-height: 1.2; margin-bottom: 0.3rem; }
+  .wins-row span { color: var(--soft); font-size: 0.95rem; }
+
+  .ask { grid-column: span 2; background: var(--paper); border-style: dashed; box-shadow: none; transform: rotate(-1deg); }
+  .ask ul { margin: 0; padding-left: 1.1rem; }
+  .ask li { margin-bottom: 0.5rem; }
+  .ask li::marker { color: var(--magenta); }
+
+  @media (max-width: 900px) {
+    .intro { grid-template-columns: 1fr; }
+    .book { grid-template-columns: 1fr; }
+    .tile { grid-column: auto !important; transform: none !important; }
+    .wins-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) { .checks { columns: 1; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="top" aria-label="Main">
+    <a class="logo" href="index.html">archita<span>.</span></a>
+    <div class="switch">
+      <a href="index.html">Work</a>
+      <a href="me.html" aria-current="page">Know me</a>
+    </div>
+  </nav>
+
+  <header class="intro">
+    <div>
+      <p class="note">okay, the real stuff</p>
+      <h1>If you really want to know me, <s>read my résumé</s> read this.</h1>
+      <p>I'm a New Yorker by way of Los Angeles, and the analyst who'll fix your dashboard on Monday and go scuba diving on Saturday. Here's everything that doesn't fit in a bullet point.</p>
+    </div>
+    <figure class="grad">
+      <img src="images/grad.jpg" alt="Archita in her USC graduation cap and gown, smiling and holding up a peace sign">
+      <figcaption>USC, class of '25!</figcaption>
+    </figure>
+  </header>
+
+  <main class="book">
+    <article class="tile swe">
+      <span class="note">giving back</span>
+      <h2>Making room for women in engineering.</h2>
+      <p>I've been part of the Society of Women Engineers since 2020, working to make engineering more diverse and to support women in STEM.</p>
+      <ul>
+        <li><b>Graduate Ambassador, SWE at USC</b>Welcoming and supporting women in USC's engineering programs.</li>
+        <li><b>Affiliate Manager, SWE at MIT-WPU</b>Helped lead the chapter in Pune.</li>
+        <li><b>Teaching Assistant, USC CSCI 491</b>Helped students ship their final game projects.</li>
+      </ul>
+    </article>
+
+    <article class="tile karate">
+      <span class="note">on the mat</span>
+      <h2>1st Dan black belt.</h2>
+      <svg class="belt" viewBox="0 0 240 90" fill="none" aria-hidden="true">
+        <rect x="4" y="18" width="232" height="26" rx="5" fill="#000" stroke="#F4F2FF" stroke-width="2"/>
+        <rect x="104" y="12" width="34" height="38" rx="6" fill="#000" stroke="#F4F2FF" stroke-width="2"/>
+        <path d="M112 50l-22 36M130 50l24 36" stroke="#F4F2FF" stroke-width="16" stroke-linecap="round"/>
+        <path d="M112 50l-22 36M130 50l24 36" stroke="#000" stroke-width="12" stroke-linecap="round"/>
+        <rect x="160" y="22" width="28" height="18" fill="#FFB627"/>
+      </svg>
+      <p>Shotokan karate, earned with a diploma certification. It taught me discipline, patience, and how to stay calm when things get loud.</p>
+    </article>
+
+    <article class="tile stories">
+      <span class="note">after hours</span>
+      <h2>I'm a story person.</h2>
+      <p>I love reading and watching movies, and I'm the friend who wants to talk through the whole series the minute it ends: the characters, the choices, the ending that didn't land.</p>
+      <p>Honestly, I just like studying how stories work. It's not that different from finding the story in a dataset.</p>
+      <svg class="shelf" viewBox="0 0 400 110" fill="none" aria-hidden="true">
+        <g stroke="#1C1440" stroke-width="2.5" stroke-linejoin="round">
+          <rect x="20" y="20" width="26" height="80" rx="3" fill="#E2367F"/>
+          <rect x="48" y="34" width="22" height="66" rx="3" fill="#FFB627"/>
+          <rect x="72" y="14" width="30" height="86" rx="3" fill="#3A2BB8"/>
+          <rect x="106" y="40" width="24" height="60" rx="3" fill="#C9F2E3" transform="rotate(-10 118 100)"/>
+          <path d="M8 100h170" stroke-linecap="round"/>
+          <rect x="230" y="30" width="150" height="70" rx="10" fill="#fff"/>
+          <path d="M290 50v30l26-15z" fill="#E2367F"/>
+          <path d="M236 30l14-18M262 30l14-18M288 30l14-18M314 30l14-18M340 30l14-18" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </article>
+
+    <article class="tile journey">
+      <span class="note">how I got here</span>
+      <h2>Mumbai to Pune to LA to New York.</h2>
+      <ol class="stops">
+        <li><b>Mumbai, India</b><span>Where I was born and brought up.</span></li>
+        <li><b>Pune, India</b><span>Computer science degree at MIT World Peace University.</span></li>
+        <li><b>Los Angeles, 2023</b><span>Moved for my master's at USC and stayed on through my first data roles.</span></li>
+        <li class="here"><b>New York, now</b><span>Home for the past year, and where I work for Tavily.</span></li>
+      </ol>
+    </article>
+
+    <article class="tile adventure">
+      <span class="note">weekend plans</span>
+      <h2>I'll try anything once.</h2>
+      <p>Usually twice, if it involves water, mountains, or jumping out of something.</p>
+      <ul class="checks">
+        <li><svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="6" stroke="#1C1440" stroke-width="2.5"/><path d="M7 13l4 4 9-10" stroke="#E2367F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Scuba diving</li>
+        <li><svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="6" stroke="#1C1440" stroke-width="2.5"/><path d="M7 13l4 4 9-10" stroke="#E2367F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Surfing</li>
+        <li><svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="6" stroke="#1C1440" stroke-width="2.5"/><path d="M7 13l4 4 9-10" stroke="#E2367F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Skydiving</li>
+        <li><svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="6" stroke="#1C1440" stroke-width="2.5"/><path d="M7 13l4 4 9-10" stroke="#E2367F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Trekking</li>
+        <li><svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="6" stroke="#1C1440" stroke-width="2.5"/><path d="M7 13l4 4 9-10" stroke="#E2367F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Camping</li>
+        <li><svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="6" stroke="#1C1440" stroke-width="2.5" stroke-dasharray="4 4"/></svg>Your suggestion?</li>
+      </ul>
+      <svg class="scene" viewBox="0 0 400 120" fill="none" aria-hidden="true">
+        <g stroke="#1C1440" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M150 92l45-62 30 38 20-22 45 46" fill="#C9F2E3"/>
+          <path d="M60 22a24 24 0 0 1 48 0Z" fill="#E2367F"/>
+          <path d="M60 22l24 26M108 22L84 48M84 22v26"/>
+          <circle cx="84" cy="52" r="4" fill="#1C1440"/>
+          <path d="M4 104c20-14 40-14 60 0s40 14 60 0 40-14 60 0 40 14 60 0 40-14 60 0 40 14 60 0 40-14 36-4" stroke="#3A2BB8"/>
+          <path d="M320 70l18 30h-36Z" fill="#FFB627"/>
+          <path d="M338 100h20"/>
+        </g>
+      </svg>
+    </article>
+
+    <article class="tile dance">
+      <svg class="mandala" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+        <g stroke="#FFB627" stroke-width="3">
+          <circle cx="100" cy="100" r="22" fill="#FFB627"/>
+          <circle cx="100" cy="100" r="44"/>
+          <circle cx="100" cy="100" r="70" stroke-dasharray="4 10" stroke-linecap="round"/>
+          <path d="M100 56c10 14 10 30 0 44-10-14-10-30 0-44ZM100 144c10-14 10-30 0-44-10 14-10 30 0 44ZM56 100c14-10 30-10 44 0-14 10-30 10-44 0ZM144 100c-14-10-30-10-44 0 14 10 30 10 44 0Z" fill="#E2367F"/>
+        </g>
+      </svg>
+      <span class="note">every now and then</span>
+      <h2>And yes, I dance.</h2>
+      <p>Not every day, but when I do, I go all in. I performed with Team Jashn at USC and placed at a couple of college competitions in India.</p>
+      <ul class="medals">
+        <li>
+          <svg width="40" height="48" viewBox="0 0 40 48" fill="none" aria-hidden="true"><path d="M12 2l8 16 8-16" stroke="#3A2BB8" stroke-width="5"/><circle cx="20" cy="31" r="14" fill="#C9CCD6" stroke="#1C1440" stroke-width="2.5"/><text x="20" y="36" text-anchor="middle" font-size="13" font-weight="800" fill="#1C1440" font-family="sans-serif">2</text></svg>
+          <div><b>1st runner-up, Indigo Saga</b><span>Mood Indigo, IIT Bombay</span></div>
+        </li>
+        <li>
+          <svg width="40" height="48" viewBox="0 0 40 48" fill="none" aria-hidden="true"><path d="M12 2l8 16 8-16" stroke="#E2367F" stroke-width="5"/><circle cx="20" cy="31" r="14" fill="#C9CCD6" stroke="#1C1440" stroke-width="2.5"/><text x="20" y="36" text-anchor="middle" font-size="13" font-weight="800" fill="#1C1440" font-family="sans-serif">2</text></svg>
+          <div><b>1st runner-up, Thematic Dance</b><span>Aarohan, MIT-WPU</span></div>
+        </li>
+      </ul>
+    </article>
+
+    <article class="tile wins">
+      <span class="note">proud moments</span>
+      <h2>Builder since before it was my job.</h2>
+      <div class="wins-row">
+        <div><b>First place, HackMIT Innovation Hackathon</b><span>MIT-WPU, 2022</span></div>
+        <div><b>A granted patent</b><span>A scanner that scores how food additives affect you, granted in South Africa.</span></div>
+        <div><b>Published researcher</b><span>A Springer paper on gesture recognition and a book chapter on AI in healthcare.</span></div>
+      </div>
+    </article>
+
+    <article class="tile ask">
+      <span class="note">ask me about</span>
+      <ul>
+        <li>Why NDR is the first metric I check</li>
+        <li>How a food additive scanner became a patent</li>
+        <li>What it feels like to jump out of a plane</li>
+        <li>The ending of the last show you watched (I'll have theories)</li>
+        <li>Getting more women into data roles</li>
+      </ul>
+    </article>
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="note">now you know me a little</p>
+    <h2>Let's get coffee.</h2>
+    <p>Whether it's a data role, a side project, or mentoring, I'd love to hear from you.</p>
+    <ul class="btns">
+      <li><a class="btn" href="mailto:architadhande2001@gmail.com">architadhande2001@gmail.com</a></li>
+      <li><a class="btn" href="index.html">Back to my work</a></li>
+    </ul>
+    <small>Made by Archita in New York, © 2026</small>
+  </div>
+</footer>
+</body>
+</html>
